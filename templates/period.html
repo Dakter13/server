@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Выберите период
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="../static/css/period.css">
+{% endblock %}
+
+{% block header %}
+    <div class="menu">
+        <button id="toggleNav">
+            <img id="menuIcon" src="../static/images/menu.svg" alt="Меню">
+        </button>
+    </div>
+
+<div id="mainNav" style="display: none;">
+    <div class="nav-item home" onclick="location.href='index.html'">
+
+        Главная
+    </div>
+    <div class="nav-item lectures" onclick="location.href='lectures.html'">
+        Курс лекций
+    </div>
+    <div class="nav-item photos" onclick="location.href='photo-archive.html'">
+        Архив фотографий
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="period">
+        <div class="period__slider swiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="period-slide" style="background-image: url(../static/images/period-slider/start.jpg); background-size: cover; background-position: center;height: 100%;">
+                        <div class="container">
+                            <div class="period-slide__inner">
+                                <div class="period-slide__content">
+                                    <h1 class="period-slide__title">
+                                        История ставропольской рекламы
+                                    </h1>
+                                    <p class="period-slide__text">
+                                        Листай вниз, чтобы увидеть наш лекционный курс,
+                                        сделанный нашими специалистами специально для тебя.
+                                    </p>
+
+                                    <h1 class="period-slide__title__phone">
+                                        История ставропольской рекламы
+                                    </h1>
+
+                                    <p class="period-slide__text__phone">
+                                        Листай вниз, чтобы увидеть наш лекционный курс.
+                                    </p>
+                                    <div class="period-container_arrow">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="yellow" class="bi bi-caret-down" viewBox="0 0 16 16">
+                                            <path d="M3.204 5h9.592L8 10.481zm-.753.659 4.796 5.48a1 1 0 0 0 1.506 0l4.796-5.48c.566-.647.106-1.659-.753-1.659H3.204a1 1 0 0 0-.753 1.659"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="period-slide" style="background-image: url(../static/images/period-slider/1.jpg); background-size: cover; background-position: center;height: 100%;">
+                        <div class="container">
+                            <div class="period-slide__inner">
+                                <div class="period-slide__content">
+                                    <h1 class="period-slide__title">
+                                        Дореволюционный Ставрополь
+                                    </h1>
+                                    <p class="period-slide__text">
+                                        В этой лекции мы исследуем,
+                                        какие рекламные стратегии и приемы использовались в Дореволюционном Ставрополье
+                                        для привлечения внимания потребителей и формирования их предпочтений.
+                                        Мы рассматриваем разнообразные рекламные материалы того времени,
+                                        начиная от плакатов и рекламных объявлений до рекламных брошюр и журналов.
+                                    </p>
+
+                                    <h1 class="period-slide__title__phone">
+                                        1896 - 1917 гг.
+                                    </h1>
+
+                                    <p class="period-slide__text__phone">
+                                        Эта лекция исследует рекламные практики в Дореволюционном Ставрополье.
+                                    </p>
+
+                                    <a href="#" class="middle-slide__btn button">
+                                        Нажми чтобы смотреть
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="period-slide" style="background-image: url(../static/images/period-slider/2.jpg); background-size: cover; background-position: center;height: 100%;">
+                        <div class="container">
+                            <div class="period-slide__inner">
+                                <div class="period-slide__content">
+                                    <h1 class="period-slide__title">
+                                        Советский Ставрополь
+                                    </h1>
+                                    <p class="period-slide__text">
+                                        В этой лекции мы исследуем уникальные особенности рекламы в период советского времени на Ставрополья.
+                                        Через анализ рекламных материалов и практик мы раскрываем,
+                                        как реклама отражала потребности и ценности советского общества,
+                                        а также какие методы и стратегии использовались для привлечения внимания потребителей в условиях государственного контроля и цензуры.
+                                    </p>
+                                    <h1 class="period-slide__title__phone">
+                                        1922 - 1991 гг.
+                                    </h1>
+                                    <p class="period-slide__text__phone">
+                                        В лекции мы исследуем уникальные особенности рекламы на советском Ставрополе.
+                                    </p>
+                                    <a href="#" class="middle-slide__btn button">
+                                        Нажми чтобы смотреть
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="swiper-pagination">
+                <button class="page-btn" data-page="1">1</button>
+                <button class="page-btn" data-page="2">2</button>
+            </div>
+        </div>
+    </section>
+{% endblock %}

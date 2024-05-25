@@ -1,0 +1,202 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Главная
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="../static/css/index.css">
+{% endblock %}
+
+{% block content %}
+    <section class="top">
+        <div class="top__swiper swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="top-slide">
+                            <div class="container">
+                                <div class="top-slide__inner">
+                                    <img class="top-slide__img--mini" src="../static/images/slider-top/slide-top_2.png" alt="">
+                                    <div class="top-slide__content">
+                                        <h1 class="top-slide__title">
+                                          Исторический марафон
+                                        </h1>
+                                        <p class="top-slide__text">
+                                            Прошлое в движении: Откройте тайны ставропольской рекламы через наши видеолекции.
+                                        </p>
+                                        <a href="#" class="top-slide__btn button">СМОТРЕТЬ</a>
+                                    </div>
+                                    <img class="top-slide__img" src="../static/images/slider-top/slide-top_1.png" alt="">
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="top-slide" style="background-image: url(../static/images/slider-top/slide-bg-1.jpg);">
+                        <div class="container">
+                             <div class="top-slide__inner">
+                                 <div class="middle-slide__content">
+                                     <h1 class="middle-slide__title">
+                                         Архивные Фотографии
+                                     </h1>
+                                     <p class="middle-slide__text">
+                                         Откройте архивную кладовку ставропольской рекламы!
+                                         Здесь вы найдете уникальные исторические снимки, которые погрузят вас в атмосферу прошлого.
+                                         Исследуйте каждый кадр и узнайте, как менялась реклама в нашем регионе со временем.
+                                     </p>
+                                     <a href="#" class="middle-slide__btn button">
+                                        Смотреть
+                                     </a>
+                                 </div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="swiper-slide">
+                        <div class="top-slide" style="background-image: url(../static/images/slider-top/slide-bg-2.jpg);">
+                            <div class="container">
+                                 <div class="top-slide__inner">
+                                     <div class="middle-slide__content">
+                                         <h1 class="middle-slide__title">
+                                             Регистрация на сайте
+                                         </h1>
+                                         <p class="middle-slide__text">
+                                             Присоединяйтесь к нашему сообществу!
+                                             Регистрация на нашем сайте открывает возможность: сохранение избранных материалов.
+                                             Просто заполните несколько полей и начните свое погружение в мир истории ставропольской рекламы прямо сейчас!
+                                         </p>
+                                         <a href="#" class="middle-slide__btn button">
+                                            Регистрация
+                                         </a>
+                                    </div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="container">
+                <div class="container container-arrow">
+                    <div class="swiper-button-prev">
+                        <img src="../static/images/Arrow-left.svg" alt="">
+                    </div>
+                    <div class="swiper-button-next">
+                        <img src="../static/images/Arrow-right.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="about">
+        <div class="container">
+            <div class="about__inner">
+                <h2 class="about__title">
+                    Развитие рекламы на Ставрополье
+                </h2>
+                <div class="about__textbox">
+                    <div class="about__text">
+                        <p>
+                            Добро пожаловать на информационный портал,
+                            посвященный развитию рекламной индустрии на территории Ставропольского края!
+                            Здесь мы исследуем и отслеживаем динамику развития рекламных технологий,
+                            трендов и инноваций, которые формируют современное лицо рекламы в регионе.
+                        </p>
+                        <p>
+                            Наш сайт приглашает вас узнать о фундаментальных изменениях в рекламной среде Ставрополья.
+                            Мы рассматриваем как традиционные, так и современные аспекты рекламной деятельности,
+                            а также их влияние на бизнес-среду и общество в целом.
+                        </p>
+                        <p>
+                            Мы стремимся стать вашим главным источником информации о рекламной индустрии в регионе.
+                            Наши материалы охватывают широкий спектр тем,
+                            начиная от истории развития рекламы на Ставрополье до анализа современных тенденций и перспектив.
+                        </p>
+                    </div>
+                    <div class="about__text about__text--bold">
+                        <p>
+                            Наша цель — предоставить всестороннее понимание о том,
+                            как развивается рекламная отрасль на территории Ставропольского края.
+                            Мы анализируем не только коммерческие аспекты, но и социокультурные факторы,
+                            формирующие рекламную среду региона.
+                        </p>
+                        <p>
+                            Присоединяйтесь к нам, чтобы углубить свои знания о развитии рекламы на территории Ставрополья!
+                            Мы предлагаем интересные статьи, экспертные мнения, аналитические обзоры и другие материалы,
+                            помогающие вам быть в курсе последних изменений и достижений в этой области.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about__title-slider">
+                    <h2 class="about__title">
+                        Видеолекции
+                    </h2>
+                </div>
+
+                <div class="about__slider swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="about__item">
+                                <h4 class="about__item-title">
+                                    Дореволюционный Ставрополь
+                                </h4>
+                                <img src="../static/images/about-slider/1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="about__item">
+                                <h4 class="about__item-title">
+                                    Советская реклама
+                                </h4>
+                                <img src="../static/images/about-slider/2.png" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="about__item">
+                                <h4 class="about__item-title">
+                                    Современность
+                                </h4>
+                                <img src="../static/images/about-slider/3.png" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="about__item">
+                                <h4 class="about__item-title">
+                                    Дореволюционный Ставрополь
+                                </h4>
+                                <img src="../static/images/about-slider/1.png" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="about__item">
+                                <h4 class="about__item-title">
+                                    Советская реклама
+                                </h4>
+                                <img src="../static/images/about-slider/2.png" alt="">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="about__item">
+                                <h4 class="about__item-title">
+                                    Современность
+                                </h4>
+                                <img src="../static/images/about-slider/3.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                <div class="container container-arrow">
+                <div class="swiper-button-prev">
+                    <img src="../static/images/Arrow-left.svg" alt="">
+                </div>
+                <div class="swiper-button-next">
+                    <img src="../static/images/Arrow-right.svg" alt="">
+                </div>
+                </div>
+                <div class="about__btn">
+                    <a href="#" class="button">Смотреть лекции</a>
+                </div>
+        </div>
+    </section>
+{% endblock %}

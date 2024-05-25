@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Смотреть лекции
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/lectures.css">
+{% endblock %}
+
+{% block content %}
+        <section class="top">
+        <div class="container">
+        <div class="video__swiper swiper">
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <div class="top-slide">
+                        <div class="video__container">
+                            <div class="video__container-trigger">
+                                <div class="video__container-preview">
+                                    <img src="../static/images/1945-1991/1.JPG" alt="Video Preview">
+                                    <button class="play-button">
+                                        <img src="../static/images/btn.svg" alt="Play Button">
+                                    </button>
+                                </div>
+                                <div class="video__container-element">
+                                    <video class="video__container-video" controls>
+                                        <source src="../static/video/1945-1991/01.mov" type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="swiper-slide">
+                    <div class="top-slide">
+                            <div class="video__container">
+                                <div class="video__container-trigger">
+                                    <div class="video__container-preview">
+                                        <img src="../static/images/1945-1991/2.JPG" alt="Video Preview">
+                                        <button class="play-button">
+                                            <img src="../static/images/btn.svg" alt="Play Button">
+                                        </button>
+                                    </div>
+                                    <div class="video__container-element">
+                                        <video class="video__container-video" controls>
+                                            <source src="../static/video/1945-1991/02.mov" type="video/mp4">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="container container-arrow">
+                    <div class="swiper-button-prev">
+                        <img src="../static/images/Arrow-left.svg" alt="">
+                    </div>
+                    <div class="swiper-button-next">
+                        <img src="../static/images/Arrow-right.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+{% endblock %}

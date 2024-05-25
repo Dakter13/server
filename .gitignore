@@ -1,0 +1,5 @@
+video/
+photo-archive/
+__pycache__/
+.venv/
+.env

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Фото архив
+{% endblock %}
+
+{% block style %}
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="stylesheet" href="../static/css/photo.css">
+{% endblock %}
+
+{% block content %}
+    <div class="photo">
+        {% for file_name in file_names %}
+            <div class="container_photo">
+                <img src="../static/images/photo-archive/{{ file_name[1] }}" alt="">
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

@@ -1,0 +1,36 @@
+/* photo.css */
+
+.photo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.container_photo {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.2s ease;
+    width: 200px; /* Фиксированная ширина контейнера */
+    height: 150px; /* Фиксированная высота контейнера */
+}
+
+.container_photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Масштабируем и обрезаем изображения */
+}
+
+.container_photo:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+    .photo {
+        flex-direction: column;
+        align-items: center;
+    }
+}
