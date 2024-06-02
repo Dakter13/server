@@ -10,12 +10,72 @@
 {% endblock %}
 
 {% block content %}
-    <div class="photo">
-        {% for file_name in file_names %}
-            <div class="container_photo">
-                <img src="../static/images/photo-archive/{{ file_name[1] }}" alt="">
+    <div class="container">
+        <form method="get" action="{{ url_for('photos') }}" id="searchForm">
+            <label for="tags">Теги:</label>
+            <select id="tags" name="tags" onchange="document.getElementById('searchForm').submit();">
+                <option value="">Все теги</option>
+                {% for tag in all_tags %}
+                    <option value="{{ tag }}" {% if request.args.get('tags') == tag %}selected{% endif %}>{{ tag }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        {% for period, photos in photos_by_period.items() %}
+            <h2>{{ period }}</h2>
+            <div class="photo">
+                {% for file in photos %}
+                    <div class="container_photo"
+                         id="{{ file[0] }}"
+                         data-title="{{ file[2] }}"
+                         data-source="{{ file[3] }}"
+                         data-tags="{{ file[4] }}"
+                         data-period="{{ file[5] }}">
+                        <img src="../static/images/photo-archive/{{ file[1] }}" alt="" onclick="openDetails('{{ file[0] }}')">
+                    </div>
+                {% endfor %}
             </div>
         {% endfor %}
     </div>
-{% endblock %}
 
+    <div id="photoDetails" class="details">
+        <div class="details-content">
+            <span class="close" onclick="closeDetails()">&times;</span>
+            <div class="details-image">
+                <img id="details-image" src="" alt="">
+            </div>
+            <div class="details-info">
+                <p><strong>Название:</strong> <span id="details-title"></span></p>
+                <p><strong>Источник:</strong> <span id="details-source"></span></p>
+                <p><strong>Теги:</strong> <span id="details-tags"></span></p>
+                <p><strong>Период:</strong> <span id="details-period"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openDetails(photoId) {
+            var photo = document.getElementById(photoId);
+            var details = document.getElementById('photoDetails');
+            var image = photo.querySelector('img').src;
+
+            var title = photo.getAttribute('data-title');
+            var source = photo.getAttribute('data-source');
+            var tags = photo.getAttribute('data-tags');
+            var period = photo.getAttribute('data-period');
+
+            document.getElementById('details-image').src = image;
+            document.getElementById('details-title').innerText = title || 'No title';
+            document.getElementById('details-source').innerText = source || 'No source';
+            document.getElementById('details-tags').innerText = tags || 'No tags';
+            document.getElementById('details-period').innerText = period || 'No period';
+
+            details.style.display = 'block';
+        }
+
+        function closeDetails() {
+            var details = document.getElementById('photoDetails');
+            details.style.display = 'none';
+        }
+    </script>
+{% endblock %}
