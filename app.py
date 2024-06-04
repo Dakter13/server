@@ -43,25 +43,23 @@ def render_data():
         periods_photo_id ppi ON pp._id = ppi.photo_id
     LEFT JOIN 
         period p ON ppi.period_id = p._id
+    WHERE 1=1
     """
+
+    params = []
 
     if tags_filter:
         query += " AND t.name_tegs LIKE %s"
-        tags_filter = f"%{tags_filter}%"
+        params.append(f"%{tags_filter}%")
 
     if period_filter:
         query += " AND p.name LIKE %s"
-        period_filter = f"%{period_filter}%"
+        params.append(f"%{period_filter}%")
 
-    query += " pp._id, pp.file_name, pp.photo_title, pp.source, p.name "
-    query += " Order by p._id"
+    query += " GROUP BY pp._id, pp.file_name, pp.photo_title, pp.source, p.name"
+    query += " ORDER BY p._id"
 
-    if tags_filter:
-        periods_photo = query_db(query, (tags_filter,))
-    elif period_filter:
-        periods_photo = query_db(query, (period_filter,))
-    else:
-        periods_photo = query_db(query)
+    periods_photo = query_db(query, tuple(params))
 
     tegs = query_db("SELECT DISTINCT name_tegs FROM tegs")
     all_tags = [row['name_tegs'] for row in tegs]
@@ -74,8 +72,9 @@ def render_data():
         if period not in photos_by_period:
             photos_by_period[period] = []
         photos_by_period[period].append((
-                                        file['photo_id'], quote(file['file_name']), file['photo_title'], file['source'],
-                                        file['tags'], file['period']))
+            file['photo_id'], quote(file['file_name']), file['photo_title'], file['source'],
+            file['tags'], file['period']
+        ))
 
     return photos_by_period, all_tags
 
