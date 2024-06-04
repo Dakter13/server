@@ -56,8 +56,10 @@ def render_data():
         query += " AND p.name LIKE %s"
         params.append(f"%{period_filter}%")
 
-    query += " GROUP BY pp._id, pp.file_name, pp.photo_title, pp.source, t.name_tegs, p.name"
-    query += " ORDER BY p._id"
+    query += """
+    GROUP BY pp._id, pp.file_name, pp.photo_title, pp.source, p.name
+    ORDER BY p._id
+    """
 
     periods_photo = query_db(query, tuple(params))
 
@@ -77,6 +79,7 @@ def render_data():
         ))
 
     return photos_by_period, all_tags
+
 
 
 @app.route('/')
