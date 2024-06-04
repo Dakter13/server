@@ -1,65 +1,49 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Смотреть лекции
+Лекции по периодам
 {% endblock %}
 
 {% block style %}
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/lectures.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/photo.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lectures.css') }}">
 {% endblock %}
 
 {% block content %}
-        <section class="top">
-        <div class="container">
+    <div class="container">
+        <h2>Видеолекции</h2>
+        <form method="get" action="{{ url_for('lectures') }}" id="periodForm">
+            <label for="period">Выберите период:</label>
+            <select id="period" name="period" onchange="document.getElementById('periodForm').submit();">
+                {% for period in all_periods %}
+                    <option value="{{ period }}" {% if selected_period == period %}selected{% endif %}>{{ period }}</option>
+                {% endfor %}
+            </select>
+        </form>
         <div class="video__swiper swiper">
             <div class="swiper-wrapper">
-
-                <div class="swiper-slide">
-                    <div class="top-slide">
-                        <div class="video__container">
-                            <div class="video__container-trigger">
-                                <div class="video__container-preview">
-                                    <img src="../static/images/1945-1991/1.JPG" alt="Video Preview">
-                                    <button class="play-button">
-                                        <img src="../static/images/btn.svg" alt="Play Button">
-                                    </button>
-                                </div>
-                                <div class="video__container-element">
-                                    <video class="video__container-video" controls>
-                                        <source src="../static/video/1945-1991/01.mov" type="video/mp4">
-                                        Your browser does not support the video tag.
+                {% for i in range(1, 4) %}
+                    <div class="swiper-slide">
+                        <div class="top-slide">
+                            <div class="top-slide__inner">
+                                <div class="video-container">
+                                    <video id="video{{ i }}" controls>
+                                        <source src="../static/video/{{ selected_period }}/0{{ i }}.mov" type="video/mp4">
                                     </video>
+                                    <div class="video-preview" id="preview{{ i }}">
+                                        <img src="../static/images/{{ selected_period }}/{{ i }}.JPG" alt="Video Preview">
+                                        <button class="play-button" onclick="playVideo('{{ i }}')">
+                                            <img src="../static/images/btn.svg" alt="Play Button">
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="top-slide">
-                            <div class="video__container">
-                                <div class="video__container-trigger">
-                                    <div class="video__container-preview">
-                                        <img src="../static/images/1945-1991/2.JPG" alt="Video Preview">
-                                        <button class="play-button">
-                                            <img src="../static/images/btn.svg" alt="Play Button">
-                                        </button>
-                                    </div>
-                                    <div class="video__container-element">
-                                        <video class="video__container-video" controls>
-                                            <source src="../static/video/1945-1991/02.mov" type="video/mp4">
-                                            Your browser does not support the video tag.
-                                        </video>
-                                    </div>
-                                </div>
-                            </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-
-            <div class="container">
-                <div class="container container-arrow">
+                <div class="container-arrow">
                     <div class="swiper-button-prev">
                         <img src="../static/images/Arrow-left.svg" alt="">
                     </div>
@@ -67,8 +51,17 @@
                         <img src="../static/images/Arrow-right.svg" alt="">
                     </div>
                 </div>
+
+        </div>
+
+        {% for period, photos in photos_by_period.items() %}
+        <h2>Архивные фото</h2>
+            <div class="photo">
+                {% include "includes/photo_block.html" %}
             </div>
-        </div>
-        </div>
-    </section>
+        {% endfor %}
+    </div>
+
+    {% include "includes/photoDetails.html" %}
+
 {% endblock %}

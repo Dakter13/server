@@ -21,24 +21,9 @@ def query_db(query, params=None):
     return data
 
 
-@app.route('/')
-def index():
-    return render_template("index.html")
-
-
-@app.route('/period')
-def period():
-    return render_template("period.html")
-
-
-@app.route('/lectures')
-def lectures():
-    return render_template("lectures.html")
-
-
-@app.route('/photos')
-def photos():
-    tags_filter = request.args.get('tags')
+def render_data():
+    tags_filter = request.args.get("tags")
+    period_filter = request.args.get("period")
 
     query = """
     SELECT 
@@ -58,47 +43,69 @@ def photos():
         periods_photo_id ppi ON pp._id = ppi.photo_id
     LEFT JOIN 
         period p ON ppi.period_id = p._id
-    WHERE 
-        1=1
     """
 
     if tags_filter:
         query += " AND t.name_tegs LIKE %s"
         tags_filter = f"%{tags_filter}%"
 
-    query += " GROUP BY pp._id, p.name"
+    if period_filter:
+        query += " AND p.name LIKE %s"
+        period_filter = f"%{period_filter}%"
 
-    conn = mysql.connector.connect(
-        host='localhost',
-        user='Daniil',
-        password='(pvXEM1(HAlOqmCm',
-        database='vkr-v1',
-        charset='utf8mb4'
-    )
-    cursor = conn.cursor(dictionary=True)
+    query += " GROUP BY pp._id, p.name "
+    query += " Order by p._id"
 
     if tags_filter:
-        cursor.execute(query, (tags_filter,))
+        periods_photo = query_db(query, (tags_filter,))
+    elif period_filter:
+        periods_photo = query_db(query, (period_filter,))
     else:
-        cursor.execute(query)
+        periods_photo = query_db(query)
 
-    periods_photo = cursor.fetchall()
+    tegs = query_db("SELECT DISTINCT name_tegs FROM tegs")
+    all_tags = [row['name_tegs'] for row in tegs]
 
-    # Получение всех тегов для выпадающего списка
-    cursor.execute("SELECT DISTINCT name_tegs FROM tegs")
-    all_tags = [row['name_tegs'] for row in cursor.fetchall()]
-
-    cursor.close()
-    conn.close()
-
-    # Разделение фотографий по периодам
     photos_by_period = {}
     for file in periods_photo:
         period = file['period']
+        if period is None:
+            continue
         if period not in photos_by_period:
             photos_by_period[period] = []
-        photos_by_period[period].append((file['photo_id'], quote(file['file_name']), file['photo_title'], file['source'], file['tags'], file['period']))
+        photos_by_period[period].append((
+                                        file['photo_id'], quote(file['file_name']), file['photo_title'], file['source'],
+                                        file['tags'], file['period']))
 
+    return photos_by_period, all_tags
+
+
+@app.route('/')
+def index():
+    return render_template("index.html")
+
+
+@app.route('/period')
+def period():
+    return render_template("period.html")
+
+
+@app.route('/lectures')
+def lectures():
+    photos_by_period, all_tags = render_data()
+    periods = query_db("SELECT DISTINCT name FROM period")
+    all_periods = [row['name'] for row in periods]
+    selected_period = request.args.get('period', all_periods[0])
+    return render_template("lectures.html",
+                           photos_by_period=photos_by_period,
+                           all_tags=all_tags,
+                           all_periods=all_periods,
+                           selected_period=selected_period)
+
+
+@app.route('/photos')
+def photos():
+    photos_by_period, all_tags = render_data()
     return render_template("photos.html", photos_by_period=photos_by_period, all_tags=all_tags)
 
 

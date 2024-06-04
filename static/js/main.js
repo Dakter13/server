@@ -14,33 +14,33 @@ const swiperTop = new Swiper('.top__swiper', {
   },
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    const swiperTop = new Swiper('.video__swiper', {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        freeMode: true,
-        effect: 'fade',
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-    });
+function playVideo(videoId) {
+    var video = document.getElementById('video' + videoId);
+    var preview = document.getElementById('preview' + videoId);
+    preview.style.display = 'none';
+    video.play();
+}
 
-    function pauseAllVideos() {
-        const videos = document.querySelectorAll('.video__container-video');
-        videos.forEach(function (video) {
-            if (!video.paused) {
+const SwiperVideo = new Swiper('.video__swiper', {
+    slidesPerView: 3,
+    spaceBetween: 30,
+    freeMode: true,
+    effect: 'fade',
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+    on: {
+        slideChange: function () {
+            // Остановка всех видео, кроме текущего
+            const videos = document.querySelectorAll('.video-container video');
+            videos.forEach(video => {
                 video.pause();
-            }
-        });
-    }
-
-    swiperTop.on('slideChange', function () {
-        pauseAllVideos();
-    });
+                video.currentTime = 0; // сбросить время видео в начало
+            });
+        },
+    },
 });
-
-
 
 const swiperAbout = new Swiper(".about__slider", {
   slidesPerView: 4,
@@ -73,25 +73,30 @@ document.getElementById('toggleNav').addEventListener('click', function(event) {
 });
  */
 
+function openDetails(photoId) {
+    var photo = document.getElementById(photoId);
+    var details = document.getElementById('photoDetails');
+    var image = photo.querySelector('img').src;
 
-document.querySelectorAll(".video__container-trigger").forEach((trigger) => {
-    trigger.addEventListener('click', function () {
-            trigger.classList.add('video__container--active');
-    });
-});
+    var title = photo.getAttribute('data-title');
+    var source = photo.getAttribute('data-source');
+    var tags = photo.getAttribute('data-tags');
+    var period = photo.getAttribute('data-period');
 
-document.addEventListener("DOMContentLoaded", function() {
-    const triggers = document.querySelectorAll('.video__container-trigger');
-    const videoContainers = document.querySelectorAll('.video__container');
-    const videoElements = document.querySelectorAll('.video__container-video');
+    document.getElementById('details-image').src = image;
+    document.getElementById('details-title').innerText = title || 'No title';
+    document.getElementById('details-source').innerText = source || 'No source';
+    document.getElementById('details-tags').innerText = tags || 'No tags';
+    document.getElementById('details-period').innerText = period || 'No period';
 
-    triggers.forEach((trigger, index) => {
-        trigger.addEventListener('click', function() {
-            videoContainers[index].classList.add('video-container--active');
-            videoElements[index].play();
-        });
-    });
-});
+    details.style.display = 'block';
+}
+
+function closeDetails() {
+    var details = document.getElementById('photoDetails');
+    details.style.display = 'none';
+}
+
 
 
 
