@@ -53,7 +53,7 @@ def render_data():
         query += " AND p.name LIKE %s"
         period_filter = f"%{period_filter}%"
 
-    query += " GROUP BY pp._id, p.name "
+    query += " pp._id, pp.file_name, pp.photo_title, pp.source, p.name "
     query += " Order by p._id"
 
     if tags_filter:
