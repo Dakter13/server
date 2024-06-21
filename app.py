@@ -22,16 +22,13 @@ def query_db(query, params=None):
 
 
 def render_data():
-    tags_filter = request.args.get("tags")
-    period_filter = request.args.get("period")
-
     query = """
     SELECT 
         pp._id AS photo_id, 
         pp.file_name AS file_name, 
         pp.photo_title, 
-        pp.source, 
-        GROUP_CONCAT(DISTINCT t.name_tegs) AS tags, 
+        pp.source,
+        GROUP_CONCAT(DISTINCT t.name_tegs ORDER BY t.name_tegs SEPARATOR ', ') AS tags, 
         p.name AS period 
     FROM 
         periods_photo pp
@@ -46,10 +43,20 @@ def render_data():
     WHERE 1=1
     """
 
+    tags_filter = request.args.get("tags")
+    period_filter = request.args.get("period", None)
+
     params = []
 
     if tags_filter:
-        query += " AND t.name_tegs LIKE %s"
+        query += """
+        AND pp._id IN (
+            SELECT pt.photo_id
+            FROM photo_tag pt
+            JOIN tegs t ON pt.teg_id = t._id
+            WHERE t.name_tegs LIKE %s
+        )
+        """
         params.append(f"%{tags_filter}%")
 
     if period_filter:
@@ -78,8 +85,7 @@ def render_data():
             file['tags'], file['period']
         ))
 
-    return photos_by_period, all_tags
-
+    return photos_by_period, all_tags, period_filter
 
 
 @app.route('/')
@@ -94,21 +100,25 @@ def period():
 
 @app.route('/lectures')
 def lectures():
-    photos_by_period, all_tags = render_data()
+    photos_by_period, all_tags, period = render_data()
     periods = query_db("SELECT DISTINCT name FROM period")
     all_periods = [row['name'] for row in periods]
-    selected_period = request.args.get('period', all_periods[0])
+    selected_period = request.args.get('period', all_periods[0] if all_periods else None)
     return render_template("lectures.html",
                            photos_by_period=photos_by_period,
                            all_tags=all_tags,
+                           period=period,
                            all_periods=all_periods,
                            selected_period=selected_period)
 
 
 @app.route('/photos')
 def photos():
-    photos_by_period, all_tags = render_data()
-    return render_template("photos.html", photos_by_period=photos_by_period, all_tags=all_tags)
+    photos_by_period, all_tags, period = render_data()
+    return render_template("photos.html",
+                           photos_by_period=photos_by_period,
+                           all_tags=all_tags,
+                           period=period)
 
 
 if __name__ == '__main__':

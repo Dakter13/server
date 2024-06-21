@@ -21,8 +21,8 @@
             </select>
         </form>
 
-        {% for period, photos in photos_by_period.items() %}
-        <h2>{{ period }}</h2>
+        {% for period_img, photos in photos_by_period.items() %}
+        <h2>{{ period_img }}</h2>
             <div class="photo">
                 {% include "includes/photo_block.html" %}
             </div>

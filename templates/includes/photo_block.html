@@ -1,4 +1,17 @@
-        {% for file in photos %}
+{% if period != None%}
+    {% for file in photos %}
+        <div class="container_photo"
+             id="{{ file[0] }}"
+             data-title="{{ file[2] }}"
+             data-source="{{ file[3] }}"
+             data-tags="{{ file[4] }}"
+             data-period="{{ file[5] }}">
+            <img src="../static/images/photo-archive/{{ file[1] }}" alt="" onclick="openDetails('{{ file[0] }}')">
+        </div>
+    {% endfor %}
+{% else %}
+    {% for file in photos %}
+        {% if loop.index <= 9 %}
             <div class="container_photo"
                  id="{{ file[0] }}"
                  data-title="{{ file[2] }}"
@@ -7,4 +20,13 @@
                  data-period="{{ file[5] }}">
                 <img src="../static/images/photo-archive/{{ file[1] }}" alt="" onclick="openDetails('{{ file[0] }}')">
             </div>
-        {% endfor %}
+        {% elif loop.index == 10 %}
+            <div class="container_photo" id="more_photos">
+                <a href="?period={{ period_img }}">
+                    <img src="../../static/images/Arrow-right.svg" alt="Смотреть остальные фото">
+                    <div class="caption">Смотреть остальные фото</div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endif %}
