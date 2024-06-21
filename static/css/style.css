@@ -35,15 +35,20 @@ button{
 }
 
 .header__inner{
-     display: flex;
+    display: flex;
     justify-content: space-between;
 }
 
 .logo{
     position: relative;
     width: 100px;
-    top: -6px;
+    top: 19px;
     height: 100%;
+}
+
+.header__info{
+    margin-right: auto;
+    margin-left: 20px;
 }
 
 .header__logo{
@@ -56,7 +61,7 @@ button{
     font-weight: 800;
     text-transform: uppercase;
     color: white;
-    font-size: x-large;
+    font-size: 48px;
     margin: auto;
 }
 
@@ -65,15 +70,16 @@ button{
     font-weight: 700;
 }
 
-.menu__item{
-    font-size: 13px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
+.menu__list{
+    display: flex;
 }
 
-.user-nav{
-    display: none;
-    gap: 0 20px;
+.menu__item + .menu__item{
+    margin-left: 13px;
+}
+
+.menu__link{
+    font-size: 19px;
 }
 
 .container{
