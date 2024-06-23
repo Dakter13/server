@@ -16,6 +16,33 @@
     padding: 0 10px;
 }
 
+.middle-slide__photo img{
+    position: fixed;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.middle-slide__photo--1 img{
+    top: 0px;
+    left: 820px;
+    width: 960px;
+    height: 730px;
+}
+
+.middle-slide__photo--2 img{
+    top: 0px;
+    left: 790px;
+    width: 830px;
+    height: 730px;
+}
+
+.middle-slide__photo--3 img{
+    top: 0px;
+    left: 855px;
+    width: 810px;
+    height: 731px;
+}
+
 .top-slide__content{
     flex-basis: 183px;
     margin-top: -50px;
@@ -32,7 +59,7 @@
 
 .top-slide__text{
     font-size: 140%;
-    margin-bottom: 88.59px;
+    text-align: justify;
 }
 
 .top-slide__btn{
@@ -40,28 +67,26 @@
 }
 
 .middle-slide__content{
-    flex-basis:810px;
+    flex-basis: 600px;
     margin-top: -10px;
-    margin-right: auto;
+    height: 271px;
 }
 
 .middle-slide__title{
     font-family: "Montserrat", serif;
-    font-weight: 400;
+    font-weight: 700;
     text-transform: uppercase;
     font-size: 40px;
     line-height: 1.3;
-    margin-bottom: 20px;
+    margin-bottom: 8px;
 }
 
 .middle-slide__text{
     font-size: 140%;
     margin-bottom: 25px;
+    text-align: justify;
 }
 
-.middle-slide__photo{
-
-}
 
 .about{
     margin-bottom: 100px;
@@ -74,7 +99,7 @@
 
 .about__title{
     font-family: "Montserrat", serif;
-    font-weight: 400;
+    font-weight: 700;
     font-size: 32px;
     line-height: 1.34;
     text-transform: uppercase;
@@ -101,13 +126,29 @@
 
 .about__text--bold{
     font-weight: 700;
-    margin-right: 200px;
+    margin-right: 265px;
 }
 
 .about__item-title{
-    margin-bottom: 20px;
-    margin-left: 1px;
-    font-size: 110%;
+    width: 160px;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    font-size: 22px;
+}
+
+.about__item__photo{
+    position: revert;
+    margin-left: 10px;
+    width: 512px;
+    height: 314px;
+    overflow: hidden;
+}
+
+.about__item__photo img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .about__title-slider{
@@ -116,10 +157,6 @@
 
 .about__slider{
     width: 1600px;
-}
-
-.about__item{
-    cursor: pointer;
 }
 
 .about__btn{
@@ -291,9 +328,6 @@
         width: 100%;
     }
 
-    .about__item img{
-        width: 365px;
-    }
 
     .about__slider{
         width: 1500px;

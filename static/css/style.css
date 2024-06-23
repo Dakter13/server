@@ -28,6 +28,12 @@ button{
     cursor: pointer;
 }
 
+h1,h2{
+    color: #2b47a3;
+}
+
+
+
 .header{
     margin-bottom: 90px;
     padding-bottom: 25px;

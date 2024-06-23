@@ -9,6 +9,12 @@
             <img src="../static/images/photo-archive/{{ file[1] }}" alt="" onclick="openDetails('{{ file[0] }}')">
         </div>
     {% endfor %}
+    <div class="container_photo" id="more_photos">
+        <a href="/photos">
+            <img src="../../static/images/Arrow-right.svg" alt="Смотреть остальные фото">
+            <div class="caption">Все архивные фотографии</div>
+        </a>
+    </div>
 {% else %}
     {% for file in photos %}
         {% if loop.index <= 9 %}

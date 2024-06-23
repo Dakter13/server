@@ -40,8 +40,9 @@ const SwiperVideo = new Swiper('.video__swiper', {
 });
 
 const swiperAbout = new Swiper(".about__slider", {
-    slidesPerView: 4,
-    spaceBetween: 20,
+    slidesPerView: 3,
+    spaceBetween: 5,
+    loop: true,
     freeMode: true,
     navigation: {
         nextEl: '.swiper-button-next',
