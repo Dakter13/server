@@ -21,7 +21,7 @@
 
 .inter__block h3 {
     font-family: 'Arial', sans-serif;
-    font-size: 1.6em;
+    font-size: 1.5em;
     color: #0056b3;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -37,6 +37,62 @@
     margin-bottom: 20px;
     text-align: justify;
 }
+
+.img-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.img-container img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.img-caption {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.interview-item {
+    display: flex;
+    margin-bottom: 40px;
+}
+
+.interview-item .text {
+    flex: 1;
+}
+
+.interview-item .img-container {
+    flex-shrink: 0;
+    margin-left: 20px;
+    text-align: center;
+}
+
+.interview-item img {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.img-caption {
+    font-family: 'Arial', sans-serif;
+    font-size: 0.9em;
+    color: #666;
+    margin-top: 5px;
+}
+
+.two-photo{
+    display: flex;
+}
+
+.two-photo .img-container img{
+    width: 95%;
+    height: 95%;
+}
+
 
 
 
