@@ -98,6 +98,11 @@ def period():
     return render_template("period.html")
 
 
+@app.route('/paper')
+def paper():
+    return render_template("paper.html")
+
+
 @app.route('/lectures')
 def lectures():
     photos_by_period, all_tags, period = render_data()

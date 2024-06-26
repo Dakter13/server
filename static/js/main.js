@@ -7,8 +7,8 @@ const swiperTop = new Swiper('.top__swiper', {
     },
      */
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.top-button-next',
+        prevEl: '.top-button-prev',
     },
 });
 
@@ -45,8 +45,8 @@ const swiperAbout = new Swiper(".about__slider", {
     loop: true,
     freeMode: true,
     navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.about-button-next',
+        prevEl: '.about-button-prev',
     },
 });
 

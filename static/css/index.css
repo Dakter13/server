@@ -16,8 +16,14 @@
     padding: 0 10px;
 }
 
+.middle-slide__photo{
+    position: revert;
+    width: 50%;
+    height: 100%;
+}
+
 .middle-slide__photo img{
-    position: fixed;
+    position: revert;
     object-fit: cover;
     z-index: -1;
 }
@@ -44,6 +50,8 @@
 }
 
 .top-slide__content{
+    width: 50%;
+    height: 100%;
     flex-basis: 183px;
     margin-top: -50px;
 }
@@ -67,6 +75,7 @@
 }
 
 .middle-slide__content{
+    width: 50%;
     flex-basis: 600px;
     margin-top: -10px;
     height: 271px;
