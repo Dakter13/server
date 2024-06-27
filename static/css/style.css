@@ -32,35 +32,26 @@ h1,h2{
     color: #2b47a3;
 }
 
-
-
 .header{
-    margin-bottom: 90px;
     padding-bottom: 25px;
     background: #2b47a3;
 }
 
-.header__inner{
-    display: flex;
-    justify-content: space-between;
+header .container{
+    padding-top: 5px;
 }
 
 .logo{
-    position: relative;
     width: 100px;
-    top: 19px;
     height: 100%;
-}
-
-.header__info{
-    margin-right: auto;
-    margin-left: 20px;
 }
 
 .header__logo{
     width: 100%;
     height: 100%;
 }
+
+
 
 .header__title{
     font-family: "Montserrat", serif;
@@ -83,12 +74,18 @@ h1,h2{
     justify-content: space-between;
 }
 
+.menu__item{
+    display: flex;
+}
+
 .menu__item + .menu__item{
     margin-left: 13px;
 }
 
 .menu__link{
     font-size: 28px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .container{

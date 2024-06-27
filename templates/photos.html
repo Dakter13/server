@@ -11,6 +11,7 @@
 
 {% block content %}
     <div class="container">
+        <h2>Фото архив</h2>
         <form method="get" action="{{ url_for('photos') }}" id="searchForm">
             <label for="tags">Поиск по тегам:</label>
             <select id="tags" name="tags" onchange="document.getElementById('searchForm').submit();">
