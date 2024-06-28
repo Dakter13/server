@@ -21,6 +21,32 @@ def query_db(query, params=None):
     return data
 
 
+def render_video(selected_period):
+    query = """
+    SELECT 
+        v._id AS video_id, 
+        v.file_name AS video_file_name, 
+        v.kolvo AS kolvo, 
+        v.description AS video_description, 
+        p.name AS period 
+    FROM 
+        video v
+    LEFT JOIN 
+        video_period vp ON v._id = vp.video_id
+    LEFT JOIN 
+        period p ON p._id = vp.period_id
+    WHERE 
+        p.name = %(selected_period)s
+    GROUP BY 
+        v._id, v.file_name, v.kolvo, v.description, p.name
+    ORDER BY 
+        v._id
+    """
+
+    video_data = query_db(query, {'selected_period': selected_period})
+    return video_data
+
+
 def render_data():
     query = """
     SELECT 
@@ -109,11 +135,13 @@ def lectures():
     periods = query_db("SELECT DISTINCT name FROM period")
     all_periods = [row['name'] for row in periods]
     selected_period = request.args.get('period', all_periods[0] if all_periods else None)
+    video_data = render_video(selected_period)
     return render_template("lectures.html",
                            photos_by_period=photos_by_period,
                            all_tags=all_tags,
                            period=period,
                            all_periods=all_periods,
+                           video_data=video_data,
                            selected_period=selected_period)
 
 

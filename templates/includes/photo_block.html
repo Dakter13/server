@@ -1,4 +1,24 @@
-{% if period != None%}
+{% if request.path == '/lectures' %}
+    {% for file in photos %}
+        {% if loop.index <= 19 %}
+            <div class="container_photo"
+                 id="{{ file[0] }}"
+                 data-title="{{ file[2] }}"
+                 data-source="{{ file[3] }}"
+                 data-tags="{{ file[4] }}"
+                 data-period="{{ file[5] }}">
+                <img src="../static/images/photo-archive/{{ file[1] }}" alt="" onclick="openDetails('{{ file[0] }}')">
+            </div>
+        {% elif loop.index == 20 %}
+            <div class="container_photo" id="more_photos">
+                <a href="/photos">
+                    <img src="../../static/images/Arrow-right.svg" alt="Смотреть остальные фото">
+                    <div class="caption">Смотреть остальные фото</div>
+                </a>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% elif period != None%}
     {% for file in photos %}
         <div class="container_photo"
              id="{{ file[0] }}"
@@ -15,6 +35,7 @@
             <div class="caption">Все архивные фотографии</div>
         </a>
     </div>
+
 {% else %}
     {% for file in photos %}
         {% if loop.index <= 9 %}

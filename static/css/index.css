@@ -133,6 +133,10 @@
     margin-bottom: 15px;
 }
 
+.about__text a{
+    color: #2b47a3;
+}
+
 .about__text--bold{
     font-weight: 700;
     margin-right: 265px;

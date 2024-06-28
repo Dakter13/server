@@ -23,37 +23,61 @@
         </form>
         <div class="video__swiper swiper">
             <div class="swiper-wrapper">
-                {% for i in range(1, 4) %}
+                {% if (selected_period == None) or (selected_period == "до 1917 гг.") %}
                     <div class="swiper-slide">
-                        <div class="top-slide">
-                            <div class="top-slide__inner">
-                                <div class="video-container">
-                                    <video id="video{{ i }}" controls>
-                                        <source src="../static/video/{{ selected_period }}/0{{ i }}.mov" type="video/mp4">
-                                    </video>
-                                    <div class="video-preview" id="preview{{ i }}">
-                                        <img src="../static/images/{{ selected_period }}/{{ i }}.JPG" alt="Video Preview">
-                                        <button class="play-button" onclick="playVideo('{{ i }}')">
-                                            <img src="../static/images/btn.svg" alt="Play Button">
-                                        </button>
+                            <div class="top-slide">
+                                <div class="top-slide__inner">
+                                    <div class="video-container">
+                                       <h2>
+                                           Выберите другой период, чтобы посмотреть лекции
+                                       </h2>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                {% endif %}
+                {% for video in video_data %}
+                    {% for i in range(1, video['kolvo'] + 1) %}
+                        <div class="swiper-slide">
+                            <div class="top-slide">
+                                <div class="top-slide__inner">
+                                    <div class="video-container">
+                                        <video id="video{{ video['video_id'] }}_{{ i }}" controls>
+                                            <source src="../static/video/{{ video['video_file_name'] }}/0{{ i }}.mov" type="video/mp4">
+                                        </video>
+                                        <div class="video-preview" id="preview{{ video['video_id'] }}_{{ i }}">
+                                            <img src="../static/images/{{ video['video_file_name'] }}/{{ i }}.JPG" alt="Video Preview">
+                                            <button class="play-button" onclick="playVideo('{{ video['video_id'] }}_{{ i }}')">
+                                                <img src="../static/images/btn.svg" alt="Play Button">
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    {% endfor %}
                 {% endfor %}
             </div>
-                <div class="container-arrow">
-                    <div class="swiper-button-prev">
-                        <img src="../static/images/Arrow-left.svg" alt="">
-                    </div>
-                    <div class="swiper-button-next">
-                        <img src="../static/images/Arrow-right.svg" alt="">
-                    </div>
+        <div class="container-arrow">
+                <div class="swiper-button-prev">
+                    <img src="../static/images/Arrow-left.svg" alt="">
                 </div>
-
+                <div class="swiper-button-next">
+                    <img src="../static/images/Arrow-right.svg" alt="">
+                </div>
+            </div>
         </div>
 
+
+
+    {% if video_data %}
+        <div class="period-description">
+        <h2>О периоде</h2>
+            <p>{{ video_data[0]['video_description'] }}</p>
+        </div>
+    {% endif %}
+
+    {% if video_data %}
         {% for period, photos in photos_by_period.items() %}
         <h2>Архивные фото</h2>
             <div class="photo">
@@ -61,7 +85,8 @@
             </div>
         {% endfor %}
     </div>
+    {% endif %}
 
     {% include "includes/photoDetails.html" %}
-
+    </div>
 {% endblock %}

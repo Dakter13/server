@@ -39,3 +39,11 @@
     transform: translate(-50%, -50%);
 }
 
+.period-description p{
+    font-size: 1.6em;
+    color: #444;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
